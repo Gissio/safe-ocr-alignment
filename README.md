@@ -10,14 +10,14 @@ Este repositorio describe un proceso para alinear automáticamente las fotograf�
 ## Pasos
 
 * Disponer de una máquina con Ubuntu 22.04.
-* Asegurarse que CUDA esté instalado:
+* Asegurarse de que CUDA esté instalado:
 
-    sudo apt install nvidia-cuda-toolkit nvidia-cuda-toolkit-gcc
+        sudo apt install nvidia-cuda-toolkit nvidia-cuda-toolkit-gcc
 
 * Asegurarse de que [Docker](https://www.docker.com) esté instalado.
 * Asegurarse de que [VSCode](https://code.visualstudio.com) esté instalado.
-* Seguir los pasos en https://github.com/FelixHertlein/inv3d-model.
-* En el contendor Docker, crear la carpeta `/workspaces/inv3d-model/input/elecciones`.
+* Seguir los pasos de https://github.com/FelixHertlein/inv3d-model.
+* En el contenedor Docker, crear la carpeta `/workspaces/inv3d-model/input/elecciones`.
 * En esa carpeta, colocar todas las imágenes a ser alineadas. Añadirles el prefijo `image-`. Preacondicionar las imágenes con ImageMagick para mejorar el contraste.
 * En la misma carpeta, colocar, por cada imágen, la imagen de la plantilla con el prefijo `template-` y el nombre de la imagen. Un ejemplo de una plantilla:
 
@@ -27,7 +27,7 @@ Este repositorio describe un proceso para alinear automáticamente las fotograf�
 
     python3 /workspaces/inv3d-model/inference.py --model geotr_template_large@inv3d --dataset elecciones
 
-* Las imagenes se recuperan en la carpeta `/workspaces/inv3d-model/output`. En una NVIDIA 1080Ti, el proceso tarda aproximadamente 1 s por imagen.
+* Las imágenes se recuperan en la carpeta `/workspaces/inv3d-model/output`. En una NVIDIA 1080Ti, el proceso tarda aproximadamente 1 s por imagen.
 
 ## Resultados
 
@@ -35,7 +35,7 @@ Este repositorio describe un proceso para alinear automáticamente las fotograf�
 
 ![Ejemplo 1](comp_00001.jpg)
 
-* Un alineamiento de un comprobante doblado y vuelto a abrir (caso medio):
+* Un alineamiento de un comprobante doblado y vuelto a abrir (caso de dificultad media):
 
 ![Ejemplo 2](comp_00002.jpg)
 
