@@ -1,44 +1,37 @@
-# Alineamiento de fotos de comprobantes de fiscales y telegramas de mesa
+# Alineamiento de telegramas y fotos de certificados de fiscales
 
-Este repositorio describe un proceso para alinear automáticamente las fotografías de comprobantes de fiscales y telegramas de mesa, para facilitar el reconocimiento automático de caracteres.
+Este proyecto tiene por propósito alinear automáticamente los telegramas y fotografías de certificados de fiscales a una plantilla, para facilitar el reconocimiento automático de caracteres.
 
-## Herramientas
+## Instalación 
 
-* El proyecto https://github.com/FelixHertlein/inv3d-model.
-* ImageMagick para mejorar el contraste de las imágenes
+Recomendamos usar el Devcontainer provisto:
 
-## Pasos
+- Instalar [Docker](https://www.docker.com/) y [VS Code](https://code.visualstudio.com/)
+- Instalar la extensión VS Code Devcontainer `ms-vscode-remote.remote-containers`
+- Clonar el repositorio:
 
-* Disponer de una máquina con Ubuntu 22.04.
-* Asegurarse de que CUDA esté instalado:
+  git clone https://github.com/FelixHertlein/inv3d-model.git
 
-        sudo apt install nvidia-cuda-toolkit nvidia-cuda-toolkit-gcc
+- Apretar `F1` y elegir `Dev Containers: Rebuild and Reopen Container`.
+- Asegurarse de hacer funcionar CUDA en el Docker.
+- Dentro del contenedor, ejecutar:
 
-* Asegurarse de que [Docker](https://www.docker.com) esté instalado.
-* Asegurarse de que [VSCode](https://code.visualstudio.com) esté instalado.
-* Seguir los pasos de https://github.com/FelixHertlein/inv3d-model.
-* En el contenedor Docker, crear la carpeta `/workspaces/inv3d-model/input/elecciones`.
-* En esa carpeta, colocar todas las imágenes a ser alineadas. Añadirles el prefijo `image-`. Preacondicionar las imágenes con ImageMagick para mejorar el contraste.
-* En la misma carpeta, colocar, por cada imágen, la imagen de la plantilla con el prefijo `template-` y el nombre de la imagen. Un ejemplo de una plantilla:
-
-![Plantilla](plantilla.jpg)
-
-* En el contenedor Docker, ejecutar el comando:
-
-    python3 /workspaces/inv3d-model/inference.py --model geotr_template_large@inv3d --dataset elecciones
-
-* Las imágenes se recuperan en la carpeta `/workspaces/inv3d-model/output`. En una NVIDIA 1080Ti, el proceso tarda aproximadamente 1 s por imagen.
+      CUDA_VISIBLE_DEVICES=1 python3 /workspaces/safe-ocr-alignment/ejemplo.py
 
 ## Resultados
 
-* Un alineamiento de un comprobante en buenas condiciones (mejor caso):
+Para la plantilla:
 
-![Ejemplo 1](comp_00001.jpg)
+![Ejemplo 1](img/plantilla.jpg)
 
-* Un alineamiento de un comprobante doblado y vuelto a abrir (caso de dificultad media):
+Un alineamiento de un comprobante en buenas condiciones (mejor caso):
 
-![Ejemplo 2](comp_00002.jpg)
+![Ejemplo 1](img/comp_00001.jpg)
 
-* Un alineamiento de un comprobante apretujado y estirado (peor caso):
+Un alineamiento de un comprobante doblado y vuelto a abrir (caso de dificultad media):
 
-![Ejemplo 3](comp_00003.jpg)
+![Ejemplo 2](img/comp_00002.jpg)
+
+Un alineamiento de un comprobante apretujado y estirado (peor caso):
+
+![Ejemplo 3](img/comp_00003.jpg)
